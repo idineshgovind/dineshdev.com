@@ -23,12 +23,14 @@
             function sendData(name, email, message) {
               // API endpoint
               const url = 'https://sheetdb.io/api/v1/0tlv9a600007z';
+              const date = new Date();
               // Data to be sent
               const data = {
                 "data": {
                   "Name": name,
                   "Email": email,
-                  "Message": message
+                  "Message": message,
+                  "Date": date.toLocaleDateString("en-GB")
                 }
               };
               // Fetch options
