@@ -1,0 +1,138 @@
+:root {
+    --primary: #FFE169;
+    --dark: #1a1a1a;
+    --light: #ffffff;
+    --gradient: linear-gradient(145deg, #FFE169 0%, #FFD32D 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+body {
+    background-color: var(--dark);
+    color: var(--light);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.header {
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #888;
+    font-size: 1.1rem;
+}
+
+.progress-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 40px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    color: var(--light);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--gradient);
+    transition: width 0.5s ease;
+}
+
+.days-left {
+    margin-top: 15px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.goals-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    text-align: left;
+}
+
+.goal-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.goal-card:hover {
+    transform: translateY(-5px);
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.goal-header h3 {
+    font-size: 1.2rem;
+    color: var(--primary);
+    margin-right: 15px;
+}
+
+.checkbox {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: var(--dark);
+    flex-shrink: 0;
+}
+
+.checkbox.checked {
+    background: var(--primary);
+}
+
+.goal-description {
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
