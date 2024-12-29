@@ -4,7 +4,7 @@ const goals = [
         id: 1,
         title: "Get a Tattoo",
         description: "Get a meaningful tattoo as a personal milestone.",
-        completed: true
+        completed: false
     },
     {
         id: 2,
