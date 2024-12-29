@@ -8,8 +8,8 @@ const goals = [
     },
     {
         id: 2,
-        title: "Read at Least 5 Books",
-        description: "Finish 5 books that inspire or entertain me.",
+        title: "Read at Least 3 Books",
+        description: "Finish 3 books that inspire or entertain me.",
         completed: false
     },
     {
