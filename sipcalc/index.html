@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIP Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark-theme">
+    <div class="container">
+        <header>
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7V17C4 19.2091 5.79086 21 8 21H16C18.2091 21 20 19.2091 20 17V7C20 4.79086 18.2091 3 16 3H8C5.79086 3 4 4.79086 4 7Z" stroke="currentColor" stroke-width="2"/>
+                    <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 16H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M8 8H13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <h1>SIP Calculator</h1>
+            </div>
+            <button id="themeToggle" class="theme-toggle">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+            </button>
+        </header>
+
+        <main>
+            <div class="calculator-grid">
+                <div class="input-section">
+                    <div class="input-group">
+                        <label>Monthly SIP Amount (₹)
+                            <span class="tooltip" data-tooltip="Enter your monthly investment amount">ⓘ</span>
+                        </label>
+                        <input type="number" id="sipAmount" value="2000" min="100">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Start Age: <span id="startAgeValue">19</span></label>
+                        <input type="range" id="startAge" min="1" max="100" value="19">
+                    </div>
+
+                    <div class="input-group">
+                        <label>End Age: <span id="endAgeValue">55</span></label>
+                        <input type="range" id="endAge" min="1" max="100" value="55">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Interest Rate: <span id="interestRateValue">12%</span></label>
+                        <input type="range" id="interestRate" min="0" max="30" value="12" step="0.1">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Yearly SIP Increment (₹)
+                            <span class="tooltip" data-tooltip="Annual increase in your SIP amount">ⓘ</span>
+                        </label>
+                        <input type="number" id="yearlyIncrement" value="0" min="0">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="compoundInterest" checked>
+                        <label for="compoundInterest">Compound Interest</label>
+                    </div>
+                </div>
+
+                <div class="results-section">
+                    <div class="investment-summary">
+                        <h2>Investment Summary</h2>
+                        <div class="summary-grid">
+                            <div class="summary-card">
+                                <h3>Total Investment</h3>
+                                <p id="totalInvestment">₹8,64,000</p>
+                            </div>
+                            <div class="summary-card">
+                                <h3>Interest Earned</h3>
+                                <p id="interestEarned">₹1,37,99,682</p>
+                            </div>
+                            <div class="summary-card full-width">
+                                <h3>Maturity Value</h3>
+                                <p id="maturityValue">₹1,46,63,682</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <canvas id="investmentChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="breakdown-section">
+                <button id="toggleBreakdown" class="toggle-breakdown">
+                    Show Year-wise Breakdown
+                </button>
+                <div id="breakdownTable" class="breakdown-table hidden">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Year</th>
+                                <th>Investment</th>
+                                <th>Interest</th>
+                                <th>Total Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="breakdownBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
