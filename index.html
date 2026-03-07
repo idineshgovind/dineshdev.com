@@ -1,521 +1,192 @@
 <!DOCTYPE html>
-<!-- upto 2 directory depth-->
-<html lang="en-US">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dinesh - Android Dev</title>
-    <link rel="icon" type="image/x-icon" href="images/avatar.jpg">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" media="print" onload="this.media='all'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700;800&amp;display=swap" />
-    </noscript>
-    <link href="./css/font-awesome/css/all.min.css?ver=1.2.0" rel="stylesheet">
-    <link href="./css/bootstrap-icons/bootstrap-icons.css?ver=1.2.0" rel="stylesheet">
-    <link href="./css/bootstrap.min.css?ver=1.2.0" rel="stylesheet">
-    <link href="./css/aos.css?ver=1.2.0" rel="stylesheet">
-    <link href="./css/main.css?ver=1.2.0" rel="stylesheet">
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-            function sendData(name, email, message) {
-              // API endpoint
-              const url = 'https://sheetdb.io/api/v1/0tlv9a600007z';
-              const date = new Date();
-              // Data to be sent
-              const data = {
-                "data": {
-                  "Name": name,
-                  "Email": email,
-                  "Message": message,
-                  "Date": date.toLocaleDateString("en-GB")
-                }
-              };
-              // Fetch options
-              const options = {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-              };
-              // Making the API request
-                document.getElementById('confirmationMessage').style.display = 'block';
-                setTimeout(function() {
-                  document.getElementById('confirmationMessage').style.display = 'none';
-                }, 5000);
-                document.getElementById('contactForm').reset();
-               fetch(url, options).then(response => response.json()).then(data => {
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dinesh Govind - Android Developer | Kotlin | Jetpack Compose | Building innovative mobile experiences at Zoho">
+  <title>Dinesh Govind — Android Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    (function(){
+      const s=localStorage.getItem('theme');
+      const d=window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme',s||(d?'dark':'light'));
+    })();
+  </script>
+</head>
+<body>
+  <div class="noise-overlay" aria-hidden="true"></div>
 
-              }).catch((error) => {
-                  fetch(url, options).then(response => response.json()).then(data => {});
-                }
+  <header class="header">
+    <nav class="nav" role="navigation">
+      <a href="#" class="nav-logo">DG</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" aria-label="Toggle dark/light mode" type="button">
+        <span class="theme-icon sun">☀</span>
+        <span class="theme-icon moon">☽</span>
+      </button>
+      <button class="nav-toggle" aria-label="Toggle menu" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </header>
 
-              );
-            }
+  <main>
+    <section class="hero">
+      <p class="hero-greeting">Hello, I'm</p>
+      <h1 class="hero-name">Dinesh Govind</h1>
+      <p class="hero-role">Android Developer · Kotlin · Jetpack Compose · Zoho</p>
+      <p class="hero-bio">Crafting innovative, user-friendly mobile applications. Passionate about clean code, delightful UX, and pushing the boundaries of what's possible on Android.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get in Touch</a>
+        <a href="#work" class="btn btn-secondary">View Projects</a>
+      </div>
+      <div class="hero-social">
+        <a href="https://github.com/idineshgovind" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+        <a href="https://twitter.com/i_dinesh_govind" target="_blank" rel="noopener noreferrer" aria-label="Twitter">Twitter</a>
+        <a href="https://www.linkedin.com/in/dinesh-g-41b62b241/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LinkedIn</a>
+        <a href="https://www.instagram.com/idineshgovind" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+        <a href="https://blogs.dineshdev.com" target="_blank" rel="noopener noreferrer" aria-label="Blog">Blog</a>
+      </div>
+    </section>
 
-            function handleFormSubmit(event) {
-              event.preventDefault(); // Prevents default form submission behavior
-              const name = document.getElementById('name').value;
-              const email = document.getElementById('email').value;
-              const message = document.getElementById('message').value;
-              sendData(name, email, message);
-            }
-            // Add event listener to your form
-            document.getElementById('contactForm').addEventListener('submit', handleFormSubmit);
-          })
-    </script>
-    <noscript>
-      <style type="text/css">
-        [data-aos] {
-          opacity: 1 !important;
-          transform: translate(0) scale(1) !important;
-        }
-      </style>
-    </noscript>
-  </head>
-  <body id="top">
-    <header class="bg-light">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light" id="header-nav" role="navigation">
-        <div class="container">
-          <a class="link-dark navbar-brand site-title mb-0" href="#">Dinesh - Android Dev</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto me-2">
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#skills">Skills</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#portfolio">Projects</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#experience">Experience</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
-              </li>
-            </ul>
+    <section id="about" class="section">
+      <h2 class="section-title">About</h2>
+      <div class="about-content">
+        <p class="about-text">I'm an Android Developer at Zoho Corporation, with a strong foundation in Kotlin and a passion for creating innovative, user-friendly mobile applications. With exceptional problem-solving skills, I bring a unique blend of technical expertise and product enthusiasm to every project.</p>
+        <p class="about-text">I'm constantly seeking new opportunities to learn, grow, and collaborate with like-minded professionals. Based in Chennai, India — currently building the future of digital note-taking with Zoho Notebook.</p>
+        <div class="about-details">
+          <div class="detail-item">
+            <span class="detail-label">Location</span>
+            <span class="detail-value">Chennai, India</span>
           </div>
-        </div>
-      </nav>
-    </header>
-    <div class="page-content">
-      <div id="content">
-        <header>
-          <div class="cover bg-light">
-            <div class="container px-3">
-              <div class="row">
-                <div class="col-lg-6 p-2">
-                  <img class="img-fluid" src="images/illustrations/website-app.svg" alt="hello" />
-                </div>
-                <div class="col-lg-6">
-                  <div class="mt-5">
-                    <p class="lead text-uppercase mb-1">Hello World!</p>
-                    <h1 class="intro-title marker" data-aos="fade-left" data-aos-delay="50">I’m Dinesh Govind</h1>
-                    <p class="lead fw-normal mt-3" data-aos="fade-up" data-aos-delay="100">Android Developer | Compose UI | Kotlin Multiplatform | Zoho Notebook | Programmer | Product/Tech Enthusiast</p>
-                    <div class="social-nav" data-aos="fade-up" data-aos-delay="200">
-                      <nav role="navigation">
-                        <ul class="nav justify-content-left">
-                          <li class="nav-item">
-                            <a class="nav-link" href="https://twitter.com/i_dinesh_govind" title="Twitter">
-                              <i class="fab fa-twitter"></i>
-                              <span class="menu-title sr-only">Twitter</span>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="https://github.com/idineshgovind" title="Github">
-                              <i class="fab fa-github"></i>
-                              <span class="menu-title sr-only">GitHub</span>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="https://www.instagram.com/idineshgovind" title="Instagram">
-                              <i class="fab fa-instagram"></i>
-                              <span class="menu-title sr-only">Instagram</span>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a class="nav-link" href="https://www.linkedin.com/in/dinesh-g-41b62b241/" title="LinkedIn">
-                              <i class="fab fa-linkedin"></i>
-                              <span class="menu-title sr-only">LinkedIn</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                    <div class="mt-3" data-aos="fade-up" data-aos-delay="200">
-                      <a class="btn btn-primary shadow-sm mt-1 hover-effect" href="#contact">Get In Touch <i class="fas fa-arrow-right"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="detail-item">
+            <span class="detail-label">Email</span>
+            <a href="mailto:contact@dineshdev.com" class="detail-value">contact@dineshdev.com</a>
           </div>
-          <div class="wave-bg"></div>
-        </header>
-        <div class="section pt-4 px-3 px-lg-4" id="about">
-          <div class="container-narrow">
-            <div class="row">
-              <div class="col-md-6">
-                <h2 class="h4 my-2">Hello! I’m Dinesh.</h2>
-                <p>An experienced Android developer with a passion for creating innovative and user-friendly applications. With a strong background in Kotlin programming and exceptional problem-solving skills, I bring a unique blend of technical expertise and product enthusiasm to every project I work on. With a dedication to delivering high-quality results, I have a proven track record of success in the Android development industry. I am constantly seeking new opportunities to learn, grow, and collaborate with like-minded professionals.</p>
-                <div class="row mt-3">
-                  <div class="col-sm-2">
-                    <div class="pb-1">Age:</div>
-                  </div>
-                  <div class="col-sm-10">
-                    <div class="pb-1 fw-bolder">20</div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="pb-1">Email:</div>
-                  </div>
-                  <div class="col-sm-10">
-                    <div class="pb-1 fw-bolder">contact@dineshdev.com</div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="pb-1">Instagram:</div>
-                  </div>
-                  <div class="col-sm-10">
-                    <div class="pb-1 fw-bolder">idineshgovind</div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="pb-1">Twitter:</div>
-                  </div>
-                  <div class="col-sm-10">
-                    <div class="pb-1 fw-bolder">i_dinesh_govind</div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="pb-1">Address:</div>
-                  </div>
-                  <div class="col-sm-10">
-                    <div class="pb-1 fw-bolder">Chennai, India</div>
-                  </div>
-                  <div class="col-sm-2">
-                    <div class="pb-1">Office:</div>
-                  </div>
-                  <div class="col-sm-10">
-                    <div class="pb-1 fw-bolder">Currently in Zoho Corp.</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-5 offset-md-1" data-aos="fade-left" data-aos-delay="100">
-                <img class="avatar img-fluid mt-2" src="images/avatar.jpg" width="400" height="400" alt="Walter Patterson" />
-              </div>
-            </div>
+          <div class="detail-item">
+            <span class="detail-label">Website</span>
+            <a href="https://dineshdev.com" target="_blank" rel="noopener noreferrer" class="detail-value">dineshdev.com</a>
           </div>
-        </div>
-        <!-- <div class="section px-3 px-lg-4 pt-5" id="services"><div class="container-narrow"><div class="text-center mb-5"><h2 class="marker marker-center">My Services</h2></div><div class="text-center"><p class="mx-auto mb-3" style="max-width:600px"> I offer services fit for any website or app. I can quickly maximize timely deliverables for real-time schemas.</p></div><div class="row py-3"><div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="100"><img class="mb-2" src="images/services/web-design.svg" width="96" height="96" alt="web design"/><div class="h5">Web Design</div></div><div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="200"><img class="mb-2" src="images/services/graphic-design.svg" width="96" height="96" alt="graphic design"/><div class="h5">Graphic Design</div></div><div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="300"><img class="mb-2" src="images/services/ui-ux.svg" width="96" height="96" alt="ui-ux"/><div class="h5">UI/UX</div></div><div class="col-md-3 text-center" data-aos="fade-up" data-aos-delay="400"><img class="mb-2" src="images/services/app-development.svg" width="96" height="96" alt="app development"/><div class="h5">App Development</div></div></div></div></div> -->
-        <div class="section px-3 px-lg-4 pt-5" id="skills">
-          <div class="container-narrow">
-            <div class="text-center mb-5">
-              <h2 class="marker marker-center">My Skills</h2>
-            </div>
-            <div class="text-center">
-              <p class="mx-auto mb-3" style="max-width:600px">I am a quick learner and specialize in multitude of skills required for Mobile Application Development</p>
-            </div>
-            <div class="bg-light p-3">
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="py-1">
-                    <div class="d-flex text-small fw-bolder">
-                      <span class="me-auto">Android Development</span>
-                      <span>90%</span>
-                    </div>
-                    <div class="progress my-1">
-                      <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="100" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="py-1">
-                    <div class="d-flex text-small fw-bolder">
-                      <span class="me-auto">Kotlin</span>
-                      <span>90%</span>
-                    </div>
-                    <div class="progress my-1">
-                      <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="200" data-aos-anchor=".skills-section" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="py-1">
-                    <div class="d-flex text-small fw-bolder">
-                      <span class="me-auto">Java</span>
-                      <span>85%</span>
-                    </div>
-                    <div class="progress my-1">
-                      <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="py-1">
-                    <div class="d-flex text-small fw-bolder">
-                      <span class="me-auto">Swift</span>
-                      <span>75%</span>
-                    </div>
-                    <div class="progress my-1">
-                      <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-5 offset-md-2">
-                  <div class="py-1">
-                    <div class="d-flex text-small fw-bolder">
-                      <span class="me-auto">Jetpack Compose</span>
-                      <span>80%</span>
-                    </div>
-                    <div class="progress my-1">
-                      <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="py-1">
-                    <div class="d-flex text-small fw-bolder">
-                      <span class="me-auto">Kotlin Multiplatform</span>
-                      <span>85%</span>
-                    </div>
-                    <div class="progress my-1">
-                      <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="500" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="py-1">
-                    <div class="d-flex text-small fw-bolder">
-                      <span class="me-auto">Ktor</span>
-                      <span>80%</span>
-                    </div>
-                    <div class="progress my-1">
-                      <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                  <div class="py-1">
-                    <div class="d-flex text-small fw-bolder">
-                      <span class="me-auto">SwiftUI</span>
-                      <span>70%</span>
-                    </div>
-                    <div class="progress my-1">
-                      <div class="progress-bar bg-primary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="section px-2 px-lg-4 pt-5" id="portfolio">
-          <div class="container">
-            <div class="text-center mb-5">
-              <h2 class="marker marker-center">Projects I worked on</h2>
-            </div>
-            <div class="d-flex justify-content-center flex-wrap bp-gallery pb-3" data-aos="zoom-in-up" data-aos-delay="100">
-              <div class="grid-item">
-                <a href="https://github.com/idineshgovind/ArtieChatBot">
-                  <figure class="portfolio-item">
-                    <img src="images/portfolio/robot.gif" />
-                    <figcaption>
-                      <h4 class="h5 mb-0">Artie - AI Chatbot</h4>
-                      <div>This is AI based ChatBot which give answers, suggestions, tips anything you ask.</div>
-                    </figcaption>
-                  </figure>
-                </a>
-              </div>
-              <div class="grid-item">
-                <a href="https://github.com/idineshgovind/BlockDrop-TetrisGame">
-                  <figure class="portfolio-item">
-                    <img src="images/portfolio/block-drop.png" />
-                    <figcaption>
-                      <h4 class="h5 mb-0">Block Drop - Tetris Game</h4>
-                      <div>Block Drop is a classic Tetris game implemented in Kotlin with Jetpack Compose for Android and iOS.</div>
-                    </figcaption>
-                  </figure>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>        
-        <div class="section px-3 px-lg-4 pt-5" id="experience">
-          <div class="container-narrow">
-            <div class="text-center mb-5">
-              <h2 class="marker marker-center">Experience</h2>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="card mb-3" data-aos="fade-up" data-aos-delay="500">
-                  <div class="card-header px-3 py-2">
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <h3 class="h5 mb-1">Android Developer</h3>
-                        <div class="text-muted text-small">Zoho Corporation Pvt. Ltd. <small>(July 2024 - Present)</small></div>
-                      </div>
-                      <img src="images/services/app-development.svg" width="48" height="48" alt="app development" />
-                    </div>
-                  </div>
-                  <div class="card-body px-3 py-2">
-                    <p>I have worked on several key projects as an Android Developer. I enhanced the user experience for the Zoho Notebook app, developed the Notebook UI SDK, and contributed to the creation of a Multiplatform SDK. These projects allowed me to focus on improving app functionality and user interface, ensuring seamless performance across different platforms.</p>
-                    <p>The dynamic environment at Zoho encourages continuous learning and innovation, making my journey here both challenging and rewarding.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="card mb-3" data-aos="fade-left" data-aos-delay="300">
-                  <div class="card-header px-3 py-2">
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <h3 class="h5 mb-1">Android Developer Trainee</h3>
-                        <div class="text-muted text-small">Zoho Corporation Pvt. Ltd. <small>(April 2023 - June 2024)</small></div>
-                      </div>
-                      <img src="images/services/full-stack.svg" width="48" height="48" alt="app development" />
-                    </div>
-                  </div>
-                  <div class="card-body px-3 py-2">
-                    <p>After wrapping up my time at ZohoSchools, I've jumped right into the deep end as an Android Developer Trainee in Zoho Notebook. I'm surrounded by some seriously talented folks who've been at this way longer than I have. They've been my lifeline, guiding me through the maze of real-world Android challenges. Every task feels like a puzzle, waiting for me to piece it together. </p>
-                    <p>The thrill of creation, the joy of problem-solving, and the satisfaction of making someone's day a little easier with an app I helped build.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-md-6">
-                <div class="card mb-3" data-aos="fade-right" data-aos-delay="100">
-                  <div class="card-header px-3 py-2">
-                    <div class="d-flex justify-content-between">
-                      <div>
-                        <h3 class="h5 mb-1">Zoho Schools Student</h3>
-                        <div class="text-muted text-small">Zoho Schools of Learning <small>(July 2022 - April 2023)</small></div>
-                      </div>
-                      <img src="images/services/ui-ux.svg" width="48" height="48" alt="ui-ux" />
-                    </div>
-                  </div>
-                  <div class="card-body px-3 py-2">
-                    <p>Zoho schools is a whole new approach to education which primarily focuses on teaching relevant, contextual and experiential learning. For someone who is not content with the education system, and wants to join a place from where you can gain practical knowledge, THIS IS THE PLACE! You learn from the professionals, themselves and it is such an enriching experience!</p>
-                    <p>There are debates, discussions, introspection and a lot of knowledge you can gain, only if you are open to it! We watch movies, read novels and expand our horizons :)</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-          <!-- <div class="section px-3 px-lg-4 pt-5" id="testimonials"><div class="container-narrow"><div class="text-center mb-5"><h2 class="marker marker-center">Client Testimonials</h2></div><div class="row"><div class="col-md-6 mb-5" data-aos="fade-right" data-aos-delay="100"><div class="d-flex ms-md-3"><span><i class="fas fa-2x fa-quote-left"></i></span><span class="m-2">Walter displays exemplary professionalism and is able to take on challenges. He learns quickly and is an asset to any team.</span></div><div class="d-flex justify-content-end align-items-end"><div class="text-end me-2"><div class="fw-bolder">Aiyana</div><div class="text-small">CEO / Web Design Company</div></div><img class="me-md-3 rounded" src="images/testimonials/client1.jpg" width="96" height="96" alt="client 1"/></div></div><div class="col-md-6 mb-5" data-aos="fade-left" data-aos-delay="300"><div class="d-flex ms-md-3"><span><i class="fas fa-2x fa-quote-left"></i></span><span class="m-2">Walter displays exemplary professionalism and is able to take on challenges. He learns quickly and is an asset to any team.</span></div><div class="d-flex justify-content-end align-items-end"><div class="text-end me-2"><div class="fw-bolder">Alexander</div><div class="text-small">CEO / Web Design Company</div></div><img class="me-md-3 rounded" src="images/testimonials/client2.jpg" width="96" height="96" alt="client 1"/></div></div><div class="col-md-6 mb-5" data-aos="fade-right" data-aos-delay="200"><div class="d-flex ms-md-3"><span><i class="fas fa-2x fa-quote-left"></i></span><span class="m-2">Walter is a great co-worker and problem solver. He is quick to extend his helping hand and makes a good team player.</span></div><div class="d-flex justify-content-end align-items-end"><div class="text-end me-2"><div class="fw-bolder">Ariya</div><div class="text-small">Web Developer</div></div><img class="me-md-3 rounded" src="images/testimonials/client3.jpg" width="96" height="96" alt="client 1"/></div></div><div class="col-md-6 mb-5" data-aos="fade-left" data-aos-delay="400"><div class="d-flex ms-md-3"><span><i class="fas fa-2x fa-quote-left"></i></span><span class="m-2">Walter is a great co-worker and problem solver. He is quick to extend his helping hand and makes a good team player.</span></div><div class="d-flex justify-content-end align-items-end"><div class="text-end me-2"><div class="fw-bolder">Braiden</div><div class="text-small">Web Designer</div></div><img class="me-md-3 rounded" src="images/testimonials/client4.jpg" width="96" height="96" alt="client 1"/></div></div></div></div></div> -->
-          <div class="section px-2 px-lg-4 pb-4 pt-5 mb-5" id="contact">
-            <div class="container-narrow">
-              <div class="text-center mb-5">
-                <h2 class="marker marker-center">Contact Me</h2>
-              </div>
-              <div class="row">
-                <div class="col-md-6" data-aos="zoom-in" data-aos-delay="100">
-                  <div class="bg-light my-2 p-3 pt-2">
-                    <form id="contactForm" target="hidden-iframe">
-                      <div class="form-group my-2">
-                        <label for="name" class="form-label fw-bolder">Name</label>
-                        <input class="form-control" type="text" id="name" name="name" required>
-                      </div>
-                      <div class="form-group my-2">
-                        <label for="email" class="form-label fw-bolder">Email</label>
-                        <input class="form-control" type="email" id="email" name="_replyto" required>
-                      </div>
-                      <div class="form-group my-2">
-                        <label for="message" class="form-label fw-bolder">Message</label>
-                        <textarea class="form-control" style="resize: none;" id="message" name="message" rows="4" required></textarea>
-                      </div>
-                      <button class="btn btn-primary mt-2" type="submit">Send</button>
-                    </form>
-                    <br>
-                    <div id="confirmationMessage" style="display: none; color: green;">Your response have been recorded. <br>We will reach out you shortly! </div>
-                  </div>
-                </div>
-                <div class="col-md-6" data-aos="fade-left" data-aos-delay="300">
-                  <div class="mt-3 px-1">
-                    <div class="h5">Let’s talk!</div>
-                    <p>If you like my work and want to talk with me then drop me a message using the contact form. </p>
-                    <p>Or get in touch using my email, instagram or my contact number.</p>
-                    <p>See you!</p>
-                  </div>
-                  <div class="mt-53 px-1">
-                    <div class="row">
-                      <div class="col-sm-2">
-                        <div class="pb-1">Email:</div>
-                      </div>
-                      <div class="col-sm-10">
-                        <div class="pb-1 fw-bolder">contact@dineshdev.com</div>
-                      </div>
-                      <div class="col-sm-2">
-                        <div class="pb-1">Instagram:</div>
-                      </div>
-                      <div class="col-sm-10">
-                        <div class="pb-1 fw-bolder">idineshgovind</div>
-                      </div>
-                      <div class="col-sm-2">
-                        <div class="pb-1">Twitter:</div>
-                      </div>
-                      <div class="col-sm-10">
-                        <div class="pb-1 fw-bolder">i_dinesh_govind</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <iframe name="hidden-iframe" style="display:none;"></iframe>
-          </div>
-          <footer class="pt-4 pb-4 text-center bg-light">
-            <div class="container">
-              <div class="my-3">
-                <div class="h4">Dinesh G</div>
-                <p>Mobile Application Developer</p>
-                <div class="social-nav">
-                  <nav role="navigation">
-                    <ul class="nav justify-content-center">
-                      <li class="nav-item">
-                        <a class="nav-link" href="https://twitter.com/i_dinesh_govind" title="Twitter">
-                          <i class="fab fa-twitter"></i>
-                          <span class="menu-title sr-only">Twitter</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/idineshgovind" title="GitHub">
-                          <i class="fab fa-github"></i>
-                          <span class="menu-title sr-only">GitHub</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="https://www.instagram.com/idineshgovind" title="Instagram">
-                          <i class="fab fa-instagram"></i>
-                          <span class="menu-title sr-only">Instagram</span>
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="https://www.linkedin.com/in/dinesh-g-41b62b241/" title="LinkedIn">
-                          <i class="fab fa-linkedin"></i>
-                          <span class="menu-title sr-only">LinkedIn</span>
-                        </a>
-                      </li>
-                    </ul>
-                  </nav>
-                </div>
-              </div>
-              <div class="text-small text-secondary">
-                <div class="mb-1">&copy; Dinesh G. All rights reserved.</div>
-                <div> Developed by - <a href="https://instagram.com/idineshgovind" target="_blank">Dinesh G</a>
-                </div>
-              </div>
-            </div>
-          </footer>
         </div>
       </div>
-      <div id="scrolltop">
-        <a class="btn btn-secondary" href="#top">
-          <span class="icon">
-            <i class="fas fa-angle-up fa-x"></i>
-          </span>
-        </a>
+    </section>
+
+    <section id="skills" class="section">
+      <h2 class="section-title">Skills</h2>
+      <p class="section-subtitle">Specializing in mobile application development across Android and cross-platform</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <span class="skill-name">Kotlin</span>
+          <span class="skill-level">Expert</span>
+        </div>
+        <div class="skill-card">
+          <span class="skill-name">Android</span>
+          <span class="skill-level">Expert</span>
+        </div>
+        <div class="skill-card">
+          <span class="skill-name">Jetpack Compose</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-card">
+          <span class="skill-name">Kotlin Multiplatform</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-card">
+          <span class="skill-name">Java</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-card">
+          <span class="skill-name">Ktor</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
+        <div class="skill-card">
+          <span class="skill-name">Swift / SwiftUI</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
       </div>
-      <script src="./scripts/imagesloaded.pkgd.min.js?ver=1.2.0"></script>
-      <script src="./scripts/masonry.pkgd.min.js?ver=1.2.0"></script>
-      <script src="./scripts/BigPicture.min.js?ver=1.2.0"></script>
-      <script src="./scripts/purecounter.min.js?ver=1.2.0"></script>
-      <script src="./scripts/bootstrap.bundle.min.js?ver=1.2.0"></script>
-      <script src="./scripts/aos.min.js?ver=1.2.0"></script>
-      <script src="./scripts/main.js?ver=1.2.0"></script>
-  </body>
+    </section>
+
+    <section id="work" class="section">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">Selected work and open-source contributions</p>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-content">
+            <h3 class="project-title">Artie — AI Chatbot</h3>
+            <p class="project-desc">An AI-powered chatbot that provides answers, suggestions, and tips for anything you ask. Built with modern Android architecture.</p>
+            <a href="https://github.com/idineshgovind/ArtieChatBot" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub →</a>
+          </div>
+        </article>
+        <article class="project-card">
+          <div class="project-content">
+            <h3 class="project-title">Block Drop — Tetris</h3>
+            <p class="project-desc">A classic Tetris game implemented in Kotlin with Jetpack Compose. Runs on both Android and iOS via Kotlin Multiplatform.</p>
+            <a href="https://github.com/idineshgovind/BlockDrop-TetrisGame" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <h2 class="section-title">Experience</h2>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Android Developer</h3>
+            <p class="timeline-company">Zoho Corporation · July 2024 — Present</p>
+            <p class="timeline-desc">Working on Zoho Notebook, enhancing UX, developing the Notebook UI SDK, and contributing to a Multiplatform SDK. Focus on app functionality, seamless performance, and cross-platform excellence.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Android Developer Trainee</h3>
+            <p class="timeline-company">Zoho Corporation · April 2023 — June 2024</p>
+            <p class="timeline-desc">Joined Zoho Notebook after ZohoSchools. Learned from experienced engineers, tackled real-world Android challenges, and contributed to building apps that make users' days easier.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <h3 class="timeline-role">Student</h3>
+            <p class="timeline-company">Zoho Schools of Learning · July 2022 — April 2023</p>
+            <p class="timeline-desc">Experiential learning program focused on relevant, contextual education. Learned from professionals, participated in debates and discussions, and expanded horizons through diverse learning.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-subtitle">Open to collaborations, opportunities, and interesting conversations</p>
+      <div class="contact-links">
+        <a href="mailto:contact@dineshdev.com" class="contact-link">contact@dineshdev.com</a>
+        <a href="https://github.com/idineshgovind" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/dinesh-g-41b62b241/" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn</a>
+        <a href="https://twitter.com/i_dinesh_govind" target="_blank" rel="noopener noreferrer" class="contact-link">Twitter</a>
+        <a href="https://www.instagram.com/idineshgovind" target="_blank" rel="noopener noreferrer" class="contact-link">Instagram</a>
+        <a href="https://blogs.dineshdev.com" target="_blank" rel="noopener noreferrer" class="contact-link">Blog</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Dinesh Govind. Built with care.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
 </html>
