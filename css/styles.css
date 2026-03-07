@@ -693,8 +693,36 @@ body {
 
 /* Mobile */
 @media (max-width: 768px) {
+  .nav {
+    flex-wrap: wrap;
+  }
+
   .nav-links {
     display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0 0;
+    margin-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .nav-links li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-links a {
+    display: block;
+    font-size: 1rem;
   }
 
   .nav-toggle {
