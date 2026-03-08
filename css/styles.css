@@ -456,6 +456,10 @@ body {
   align-items: center;
 }
 
+.tools-grid-row {
+  margin-top: 1rem;
+}
+
 .tool-icon {
   display: inline-flex;
   padding: 0.75rem;
