@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjects();
 });
 
-// GitHub API: fetch repos (sorted by created desc), then show top 5, "Show all" loads rest
+// GitHub projects: use cached JSON (updated by authenticated workflow) to avoid API rate limits
 function initProjects() {
   const container = document.getElementById('projects-list');
   const loading = document.getElementById('projects-loading');
@@ -18,31 +18,44 @@ function initProjects() {
 
   if (!container || !loading) return;
 
-  fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=created&direction=desc&per_page=100`)
+  function handleRepos(repos) {
+    loading.remove();
+    const all = repos.filter((r) => !r.fork && !r.private);
+    const top = all.slice(0, REPOS_TOP);
+    const rest = all.slice(REPOS_TOP);
+
+    renderProjects(container, top);
+
+    if (rest.length > 0) {
+      loadMoreBtn.style.display = 'inline-flex';
+      loadMoreBtn.textContent = `Show all projects (${rest.length} more)`;
+      loadMoreBtn.addEventListener('click', () => {
+        renderProjects(container, all);
+        loadMoreBtn.remove();
+      });
+    }
+  }
+
+  function showError() {
+    loading.textContent = 'Could not load projects. Check back later.';
+    loading.classList.add('projects-error');
+  }
+
+  // Try cached file first (avoids rate limits); fall back to API
+  fetch('data/repos.json')
     .then((res) => {
-      if (!res.ok) throw new Error('Failed to fetch repos');
-      return res.json();
+      if (res.ok) return res.json();
+      throw new Error('No cache');
     })
-    .then((repos) => {
-      loading.remove();
-      const all = repos.filter((r) => !r.fork && !r.private);
-      const top = all.slice(0, REPOS_TOP);
-      const rest = all.slice(REPOS_TOP);
-
-      renderProjects(container, top);
-
-      if (rest.length > 0) {
-        loadMoreBtn.style.display = 'inline-flex';
-        loadMoreBtn.textContent = `Show all projects (${rest.length} more)`;
-        loadMoreBtn.addEventListener('click', () => {
-          renderProjects(container, all);
-          loadMoreBtn.remove();
-        });
-      }
-    })
+    .then(handleRepos)
     .catch(() => {
-      loading.textContent = 'Could not load projects. Check back later.';
-      loading.classList.add('projects-error');
+      fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=created&direction=desc&per_page=100`)
+        .then((res) => {
+          if (!res.ok) throw new Error('Failed to fetch repos');
+          return res.json();
+        })
+        .then(handleRepos)
+        .catch(showError);
     });
 }
 

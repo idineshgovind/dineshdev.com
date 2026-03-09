@@ -1,0 +1,40 @@
+name: Update Cached Repos
+
+on:
+  push:
+    branches: [main, master]
+    paths-ignore:
+      - 'data/repos.json'
+      - '*.md'
+  schedule:
+    - cron: '0 * * * *'  # hourly
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch repos from GitHub API (authenticated)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p data
+          curl -s -H "Authorization: Bearer $GH_TOKEN" \
+            "https://api.github.com/users/idineshgovind/repos?sort=created&direction=desc&per_page=100" \
+            > data/repos.json
+
+      - name: Commit and push cached repos
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/repos.json
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "chore: update cached repos"
+            git push
+          fi
