@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initProjects();
 });
 
-// GitHub API: fetch repos (sorted by created desc), then show top 5, "Show all" loads rest
+// Projects: load from static JSON (pre-fetched by CI with auth → avoids API rate limit)
 function initProjects() {
   const container = document.getElementById('projects-list');
   const loading = document.getElementById('projects-loading');
@@ -18,7 +18,7 @@ function initProjects() {
 
   if (!container || !loading) return;
 
-  fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=created&direction=desc&per_page=100`)
+  fetch('/data/repos.json')
     .then((res) => {
       if (!res.ok) throw new Error('Failed to fetch repos');
       return res.json();

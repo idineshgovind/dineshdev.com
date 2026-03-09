@@ -1,0 +1,36 @@
+# Fetches GitHub repos with authenticated token (5k/hr) and saves as static JSON.
+# This avoids client-side API rate limits (60/hr unauthenticated).
+name: Update projects data
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # manual trigger
+  schedule:
+    - cron: '0 12 * * *' # daily at noon UTC
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch repos
+        env:
+          # Use PAT if REPOS_TOKEN is set, else GITHUB_TOKEN (works for same-org public repos)
+          TOKEN: ${{ secrets.REPOS_TOKEN || secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p data
+          curl -sH "Authorization: Bearer $TOKEN" \
+            "https://api.github.com/users/idineshgovind/repos?sort=created&direction=desc&per_page=100" \
+            > data/repos.json
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/repos.json
+          git diff --staged --quiet || git commit -m "chore: update projects data" && git push
