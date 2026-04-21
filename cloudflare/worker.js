@@ -20,7 +20,7 @@ const CATALOG_LINKS = [
   '<https://www.rfc-editor.org/info/rfc9727>; rel="profile"',
 ];
 
-const MARKDOWN_CONTENT_TYPE = 'text/markdown; charset=utf-8';
+const MARKDOWN_CONTENT_TYPE = 'text/markdown';
 const MARKDOWN_ACCEPT_VALUE = 'text/markdown';
 
 function isHomepage(url) {
@@ -33,7 +33,18 @@ function isCatalog(url) {
 
 function acceptsMarkdown(request) {
   const accept = request.headers.get('Accept');
-  return typeof accept === 'string' && accept.toLowerCase().includes(MARKDOWN_ACCEPT_VALUE);
+  if (typeof accept !== 'string' || !accept.trim()) return false;
+
+  return accept.split(',').some((entry) => {
+    const [mediaType, ...params] = entry.trim().toLowerCase().split(';').map((part) => part.trim());
+    if (mediaType !== MARKDOWN_ACCEPT_VALUE) return false;
+
+    const qParam = params.find((param) => param.startsWith('q='));
+    if (!qParam) return true;
+
+    const qValue = Number.parseFloat(qParam.slice(2));
+    return Number.isFinite(qValue) ? qValue > 0 : true;
+  });
 }
 
 function isHtmlResponse(response) {
