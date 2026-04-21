@@ -1,0 +1,37 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DineshDev Public Data API",
+    "version": "1.0.0",
+    "description": "Service description for publicly accessible profile and project data references used by agents."
+  },
+  "servers": [
+    {
+      "url": "https://dineshdev.com"
+    }
+  ],
+  "paths": {
+    "/.well-known/api-catalog": {
+      "get": {
+        "summary": "Retrieve API catalog linkset",
+        "operationId": "getApiCatalog",
+        "responses": {
+          "200": {
+            "description": "Linkset document listing machine-readable resources."
+          }
+        }
+      }
+    },
+    "/profile.jsonld": {
+      "get": {
+        "summary": "Retrieve profile document",
+        "operationId": "getProfileJsonLd",
+        "responses": {
+          "200": {
+            "description": "Schema.org JSON-LD person profile."
+          }
+        }
+      }
+    }
+  }
+}

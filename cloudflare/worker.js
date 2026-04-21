@@ -11,6 +11,8 @@
 
 const HOMEPAGE_LINKS = [
   '</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"',
+  '</.well-known/service-desc.json>; rel="service-desc"; type="application/json"',
+  '</docs/api/>; rel="service-doc"; type="text/html"',
   '</profile.jsonld>; rel="describedby"; type="application/ld+json"',
   '</sitemap.xml>; rel="sitemap"; type="application/xml"',
   '<https://github.com/idineshgovind>; rel="author"',

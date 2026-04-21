@@ -12,12 +12,16 @@
 
 /
   Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"
+  Link: </.well-known/service-desc.json>; rel="service-desc"; type="application/json"
+  Link: </docs/api/>; rel="service-doc"; type="text/html"
   Link: </profile.jsonld>; rel="describedby"; type="application/ld+json"
   Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
   Link: <https://github.com/idineshgovind>; rel="author"
 
 /index.html
   Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"
+  Link: </.well-known/service-desc.json>; rel="service-desc"; type="application/json"
+  Link: </docs/api/>; rel="service-doc"; type="text/html"
   Link: </profile.jsonld>; rel="describedby"; type="application/ld+json"
   Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
   Link: <https://github.com/idineshgovind>; rel="author"
@@ -25,6 +29,9 @@
 /.well-known/api-catalog
   Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"
   Link: <https://www.rfc-editor.org/info/rfc9727>; rel="profile"
+
+/.well-known/service-desc.json
+  Content-Type: application/json; charset=utf-8
 
 /profile.jsonld
   Content-Type: application/ld+json
