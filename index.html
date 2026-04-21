@@ -11,6 +11,13 @@
   <link rel="canonical" href="https://dineshdev.com/">
   <meta name="theme-color" content="#0a0a0b">
 
+  <!-- Agent discovery links (RFC 8288 Web Linking, RFC 9727 api-catalog).
+       Also emitted as HTTP Link response headers by the CDN; see _headers
+       and cloudflare/worker.js. -->
+  <link rel="api-catalog" href="/.well-known/api-catalog">
+  <link rel="describedby" href="/profile.jsonld" type="application/ld+json">
+  <link rel="author" href="https://github.com/idineshgovind">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dineshdev.com/">

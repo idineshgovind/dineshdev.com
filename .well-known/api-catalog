@@ -1,0 +1,52 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://dineshdev.com/.well-known/api-catalog",
+      "profile": "https://www.rfc-editor.org/info/rfc9727",
+      "item": [
+        {
+          "href": "https://dineshdev.com/",
+          "type": "text/html",
+          "title": "Homepage"
+        },
+        {
+          "href": "https://dineshdev.com/profile.jsonld",
+          "type": "application/ld+json",
+          "title": "Person profile (Schema.org JSON-LD)"
+        },
+        {
+          "href": "https://dineshdev.com/sitemap.xml",
+          "type": "application/xml",
+          "title": "Sitemap"
+        },
+        {
+          "href": "https://dineshdev.com/robots.txt",
+          "type": "text/plain",
+          "title": "Robots directives"
+        },
+        {
+          "href": "https://api.github.com/users/idineshgovind",
+          "type": "application/json",
+          "title": "GitHub user API (public projects and metadata)"
+        },
+        {
+          "href": "https://api.github.com/users/idineshgovind/repos",
+          "type": "application/json",
+          "title": "GitHub repositories API"
+        }
+      ],
+      "describedby": [
+        {
+          "href": "https://dineshdev.com/profile.jsonld",
+          "type": "application/ld+json"
+        }
+      ],
+      "author": [
+        {
+          "href": "https://dineshdev.com/",
+          "title": "Dinesh G"
+        }
+      ]
+    }
+  ]
+}
