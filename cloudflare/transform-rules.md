@@ -19,11 +19,19 @@ to prefer when you also need to override `Content-Type` for
   `(http.host eq "dineshdev.com" and (http.request.uri.path eq "/" or http.request.uri.path eq "/index.html"))`
 - **Then:**
   - Set static → Header name `Link` → Value:
-    `</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </profile.jsonld>; rel="describedby"; type="application/ld+json", </sitemap.xml>; rel="sitemap"; type="application/xml", <https://github.com/idineshgovind>; rel="author"`
+    `</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </.well-known/service-desc.json>; rel="service-desc"; type="application/json", </docs/api/>; rel="service-doc"; type="text/html", </profile.jsonld>; rel="describedby"; type="application/ld+json", </sitemap.xml>; rel="sitemap"; type="application/xml", <https://github.com/idineshgovind>; rel="author"`
 
 RFC 8288 §3 explicitly permits combining multiple links in a single `Link`
 header by separating them with commas, so a single Transform Rule is
 sufficient even though the examples show multiple header lines.
+
+To satisfy agent discovery checks, include at least these registered
+relations on the homepage response:
+
+- `api-catalog`
+- `service-desc`
+- `service-doc`
+- `describedby`
 
 ## Rule 2 — `/.well-known/api-catalog` content type and profile link
 
@@ -39,9 +47,16 @@ sufficient even though the examples show multiple header lines.
 After deployment, verify with:
 
 ```
-curl -sI https://dineshdev.com/ | grep -i '^link:'
+curl -sI https://dineshdev.com/ | rg -i '^link:'
 curl -sI https://dineshdev.com/.well-known/api-catalog
 ```
+
+Expected homepage headers should include all of:
+
+- `rel="api-catalog"`
+- `rel="service-desc"`
+- `rel="service-doc"`
+- `rel="describedby"`
 
 Then run the Is It Agent Ready scanner:
 

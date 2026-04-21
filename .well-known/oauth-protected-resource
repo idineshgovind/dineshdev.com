@@ -1,0 +1,16 @@
+{
+  "resource": "https://dineshdev.com",
+  "authorization_servers": [
+    "https://dineshdev.com"
+  ],
+  "scopes_supported": [
+    "openid",
+    "profile",
+    "email",
+    "read:profile",
+    "read:projects"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ]
+}

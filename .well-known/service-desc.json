@@ -11,6 +11,50 @@
     }
   ],
   "paths": {
+    "/.well-known/openid-configuration": {
+      "get": {
+        "summary": "Retrieve OpenID Provider metadata",
+        "operationId": "getOpenIdConfiguration",
+        "responses": {
+          "200": {
+            "description": "OIDC discovery metadata (OpenID Connect Discovery / RFC 8414-compatible fields)."
+          }
+        }
+      }
+    },
+    "/.well-known/oauth-authorization-server": {
+      "get": {
+        "summary": "Retrieve OAuth authorization server metadata",
+        "operationId": "getOauthAuthorizationServerMetadata",
+        "responses": {
+          "200": {
+            "description": "OAuth 2.0 authorization server metadata (RFC 8414)."
+          }
+        }
+      }
+    },
+    "/.well-known/oauth-protected-resource": {
+      "get": {
+        "summary": "Retrieve OAuth protected resource metadata",
+        "operationId": "getOauthProtectedResourceMetadata",
+        "responses": {
+          "200": {
+            "description": "OAuth 2.0 protected resource metadata (RFC 9728)."
+          }
+        }
+      }
+    },
+    "/.well-known/mcp/server-card.json": {
+      "get": {
+        "summary": "Retrieve MCP server card",
+        "operationId": "getMcpServerCard",
+        "responses": {
+          "200": {
+            "description": "Model Context Protocol server card for discovery."
+          }
+        }
+      }
+    },
     "/.well-known/api-catalog": {
       "get": {
         "summary": "Retrieve API catalog linkset",
