@@ -1,0 +1,30 @@
+# HTTP response headers served by CDNs that honour the `_headers` manifest
+# (e.g. Cloudflare Pages, Netlify).
+#
+# GitHub Pages does NOT read this file. To emit the same Link headers when
+# the site is served through Cloudflare in front of GitHub Pages, deploy the
+# Transform Rule or Worker in `cloudflare/`.
+#
+# References:
+#   RFC 8288 - Web Linking (Link header syntax)
+#   RFC 9727 - api-catalog well-known URI and link relation
+#   IANA Link Relations registry: https://www.iana.org/assignments/link-relations/
+
+/
+  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"
+  Link: </profile.jsonld>; rel="describedby"; type="application/ld+json"
+  Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
+  Link: <https://github.com/idineshgovind>; rel="author"
+
+/index.html
+  Link: </.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json"
+  Link: </profile.jsonld>; rel="describedby"; type="application/ld+json"
+  Link: </sitemap.xml>; rel="sitemap"; type="application/xml"
+  Link: <https://github.com/idineshgovind>; rel="author"
+
+/.well-known/api-catalog
+  Content-Type: application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"
+  Link: <https://www.rfc-editor.org/info/rfc9727>; rel="profile"
+
+/profile.jsonld
+  Content-Type: application/ld+json
