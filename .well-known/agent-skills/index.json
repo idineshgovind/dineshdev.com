@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "personal-profile-context",
+      "type": "skill-md",
+      "description": "Provides machine-readable profile context and public references for Dinesh G's engineering background.",
+      "url": "https://dineshdev.com/.well-known/agent-skills/SKILL.md",
+      "digest": "sha256:bc955fd0b73d536a8b52c39f86ea5cc6bbf39a2d0fe8879e8037abe3c211857d"
+    }
+  ]
+}
