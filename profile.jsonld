@@ -1,0 +1,34 @@
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "https://dineshdev.com/",
+  "dateModified": "2026-04-21",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Dinesh G",
+    "alternateName": "idineshgovind",
+    "jobTitle": "Mobile Engineer",
+    "url": "https://dineshdev.com/",
+    "email": "hello@dineshdev.com",
+    "description": "Mobile Engineer at Zoho with 4+ years building Android applications. Kotlin, Jetpack Compose, Kotlin Multiplatform.",
+    "knowsAbout": [
+      "Android",
+      "Kotlin",
+      "Jetpack Compose",
+      "Kotlin Multiplatform",
+      "Java",
+      "AI-assisted development"
+    ],
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Zoho Corporation",
+      "url": "https://www.zoho.com/"
+    },
+    "sameAs": [
+      "https://github.com/idineshgovind",
+      "https://linkedin.com/in/idineshgovind",
+      "https://x.com/i_dinesh_govind",
+      "https://instagram.com/idineshgovind"
+    ]
+  }
+}
