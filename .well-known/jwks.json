@@ -1,0 +1,12 @@
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "kid": "dineshdev-rs256-2026-01",
+      "use": "sig",
+      "alg": "RS256",
+      "n": "w3ts0ScG2S-6bRFoe-XM4fN8e2A95t1q1A4hQKcYqjPxvLefQ6Qn8x2e7v6fS0A-k4F4k8I4Xq0R6Y2r-MX1PHxT6m1hyL1Gm2QyRr0fD8vGz9fA8Q1b9L9m0Qv5R2e9rYQ1B6r9lD6c4vA3gT4dB8vM6x2pN4tF7Q4kD9mN6qQ3sP7yR2mJ4aV9kT1nB3zW4qM8dF0hC5gS1jR6pL2qN8mT4xY0vE7wK3uH9iJ5oP2yR8tV6uQ3mN1sK7dP4gF9hL2cJ6vA8xD5rB3pZ7yQ4wM0nS6tH2kL8fD1gR5cV9bN3mP7qT1uW4xY6zA2cE8fH0jK5lM9nQ3rS7tV1wX4yZ6",
+      "e": "AQAB"
+    }
+  ]
+}

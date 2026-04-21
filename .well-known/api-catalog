@@ -20,6 +20,26 @@
           "title": "Sitemap"
         },
         {
+          "href": "https://dineshdev.com/.well-known/openid-configuration",
+          "type": "application/json",
+          "title": "OpenID Connect discovery metadata"
+        },
+        {
+          "href": "https://dineshdev.com/.well-known/oauth-authorization-server",
+          "type": "application/json",
+          "title": "OAuth 2.0 authorization server metadata"
+        },
+        {
+          "href": "https://dineshdev.com/.well-known/oauth-protected-resource",
+          "type": "application/json",
+          "title": "OAuth 2.0 protected resource metadata"
+        },
+        {
+          "href": "https://dineshdev.com/.well-known/mcp/server-card.json",
+          "type": "application/json",
+          "title": "MCP server card metadata"
+        },
+        {
           "href": "https://dineshdev.com/robots.txt",
           "type": "text/plain",
           "title": "Robots directives"
