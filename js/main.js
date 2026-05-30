@@ -2,7 +2,36 @@
 
 const GITHUB_USER = 'idineshgovind';
 const REPOS_TOP = 5;
-const SECTION_IDS = ['about', 'skills', 'work', 'experience', 'focus', 'learning', 'writing', 'now', 'contact'];
+const SECTION_IDS = ['about', 'skills', 'work', 'experience', 'focus', 'learning', 'contact'];
+
+const MONTH_LABELS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+const EXPERIENCE = [
+  {
+    role: 'Software Engineer',
+    company: 'Zoho Corporation',
+    start: { year: 2026, month: 5 },
+    end: null,
+    description:
+      'Build backend services and REST APIs for Zoho Notebook, with work across mobile and web when the product needs it. Focus on reliability, clear APIs, and features that make note-taking easier for users.',
+  },
+  {
+    role: 'Android Engineer',
+    company: 'Zoho Corporation',
+    start: { year: 2023, month: 4 },
+    end: { year: 2026, month: 5 },
+    description:
+      'Shipped Android features for Zoho Notebook, including work on the Notebook UI SDK and a shared multiplatform SDK. Fixed performance issues, improved user flows, and built with Kotlin, Jetpack Compose, and modern Android architecture.',
+  },
+  {
+    role: 'Zoho Schools student',
+    company: 'Zoho Schools of Learning',
+    start: { year: 2022, month: 7 },
+    end: { year: 2023, month: 3 },
+    description:
+      'Hands-on engineering program focused on real product work. Built a foundation in software fundamentals, problem solving, and working on a team, mostly by learning from experienced engineers in practice.',
+  },
+];
 
 // Curated project copy (fallback to GitHub description)
 const PROJECT_META = {
@@ -44,7 +73,7 @@ const PROJECT_META = {
   'dineshdev.com': {
     category: 'Web',
     description:
-      'This site. A lightweight static portfolio for my work, writing, and contact info.',
+      'This site. A lightweight static portfolio for my work and contact info.',
   },
   'HarryPotterCharacters': {
     category: 'Mobile',
@@ -83,9 +112,65 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initScrollEffects();
   initMobileNav();
+  initExperience();
   initProjects();
   initWebMcp();
 });
+
+function getCurrentMonthYear() {
+  const now = new Date();
+  return { year: now.getFullYear(), month: now.getMonth() + 1 };
+}
+
+function formatMonthYear({ year, month }) {
+  return `${MONTH_LABELS[month - 1]} ${year}`;
+}
+
+function monthCountInclusive(start, end) {
+  return (end.year - start.year) * 12 + (end.month - start.month) + 1;
+}
+
+function formatDuration(start, end) {
+  const totalMonths = monthCountInclusive(start, end);
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  const parts = [];
+
+  if (years > 0) {
+    parts.push(`${years} ${years === 1 ? 'yr' : 'yrs'}`);
+  }
+  if (months > 0) {
+    parts.push(`${months} ${months === 1 ? 'mo' : 'mos'}`);
+  }
+
+  return parts.join(' ');
+}
+
+function formatExperienceDates(start, end) {
+  const endPoint = end || getCurrentMonthYear();
+  const startLabel = formatMonthYear(start);
+  const endLabel = end ? formatMonthYear(end) : 'Present';
+  const duration = formatDuration(start, endPoint);
+  return `${startLabel} - ${endLabel} · ${duration}`;
+}
+
+function initExperience() {
+  const container = document.getElementById('experience-timeline');
+  if (!container) return;
+
+  container.innerHTML = EXPERIENCE.map(
+    (entry) => `
+    <article class="timeline-item">
+      <div class="timeline-marker"></div>
+      <div class="timeline-content">
+        <h3 class="timeline-role">${escapeHtml(entry.role)}</h3>
+        <p class="timeline-company">${escapeHtml(entry.company)} · ${escapeHtml(formatExperienceDates(entry.start, entry.end))}</p>
+        <p class="timeline-desc">${escapeHtml(entry.description)}</p>
+      </div>
+    </article>
+  `
+  ).join('');
+}
 
 // GitHub API: fetch repos (sorted by created desc), then show top 5, "Show all" loads rest
 function initProjects() {
@@ -309,7 +394,7 @@ function initWebMcp() {
           section: {
             type: 'string',
             enum: SECTION_IDS,
-            description: 'Section id to scroll to (about, skills, work, experience, focus, learning, writing, now, contact).',
+            description: 'Section id to scroll to (about, skills, work, experience, focus, learning, contact).',
           },
           behavior: {
             type: 'string',
