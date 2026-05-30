@@ -6,33 +6,6 @@ const SECTION_IDS = ['about', 'skills', 'work', 'experience', 'focus', 'learning
 
 const MONTH_LABELS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const EXPERIENCE = [
-  {
-    role: 'Software Engineer',
-    company: 'Zoho Corporation',
-    start: { year: 2026, month: 5 },
-    end: null,
-    description:
-      'Build backend services and REST APIs for Zoho Notebook, with work across mobile and web when the product needs it. Focus on reliability, clear APIs, and features that make note-taking easier for users.',
-  },
-  {
-    role: 'Android Engineer',
-    company: 'Zoho Corporation',
-    start: { year: 2023, month: 4 },
-    end: { year: 2026, month: 5 },
-    description:
-      'Shipped Android features for Zoho Notebook, including work on the Notebook UI SDK and a shared multiplatform SDK. Fixed performance issues, improved user flows, and built with Kotlin, Jetpack Compose, and modern Android architecture.',
-  },
-  {
-    role: 'Zoho Schools student',
-    company: 'Zoho Schools of Learning',
-    start: { year: 2022, month: 7 },
-    end: { year: 2023, month: 3 },
-    description:
-      'Hands-on engineering program focused on real product work. Built a foundation in software fundamentals, problem solving, and working on a team, mostly by learning from experienced engineers in practice.',
-  },
-];
-
 // Curated project copy (fallback to GitHub description)
 const PROJECT_META = {
   'BlockDrop-TetrisGame': {
@@ -155,21 +128,25 @@ function formatExperienceDates(start, end) {
 }
 
 function initExperience() {
-  const container = document.getElementById('experience-timeline');
-  if (!container) return;
+  document.querySelectorAll('.timeline-item[data-start-year][data-start-month]').forEach((item) => {
+    const start = {
+      year: Number.parseInt(item.dataset.startYear, 10),
+      month: Number.parseInt(item.dataset.startMonth, 10),
+    };
 
-  container.innerHTML = EXPERIENCE.map(
-    (entry) => `
-    <article class="timeline-item">
-      <div class="timeline-marker"></div>
-      <div class="timeline-content">
-        <h3 class="timeline-role">${escapeHtml(entry.role)}</h3>
-        <p class="timeline-company">${escapeHtml(entry.company)} · ${escapeHtml(formatExperienceDates(entry.start, entry.end))}</p>
-        <p class="timeline-desc">${escapeHtml(entry.description)}</p>
-      </div>
-    </article>
-  `
-  ).join('');
+    const isPresent = item.dataset.endPresent === 'true';
+    const end = isPresent
+      ? null
+      : {
+          year: Number.parseInt(item.dataset.endYear, 10),
+          month: Number.parseInt(item.dataset.endMonth, 10),
+        };
+
+    const datesEl = item.querySelector('.timeline-dates');
+    if (!datesEl || Number.isNaN(start.year) || Number.isNaN(start.month)) return;
+
+    datesEl.textContent = formatExperienceDates(start, end);
+  });
 }
 
 // GitHub API: fetch repos (sorted by created desc), then show top 5, "Show all" loads rest
