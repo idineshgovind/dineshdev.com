@@ -2,7 +2,76 @@
 
 const GITHUB_USER = 'idineshgovind';
 const REPOS_TOP = 5;
-const SECTION_IDS = ['about', 'skills', 'work', 'experience', 'contact'];
+const SECTION_IDS = ['about', 'skills', 'work', 'experience', 'focus', 'learning', 'writing', 'now', 'contact'];
+
+// Curated project copy: problem → solution → impact (fallback to GitHub description)
+const PROJECT_META = {
+  'BlockDrop-TetrisGame': {
+    category: 'Mobile',
+    description:
+      'Classic Tetris rebuilt for Android and iOS from a shared codebase. Problem: prove cross-platform game UX without sacrificing native feel. Solution: Kotlin Multiplatform with Compose Multiplatform. Impact: one logic layer, two polished clients — and a deep lesson in shared UI architecture.',
+  },
+  'HarryPotterAPI': {
+    category: 'Backend',
+    description:
+      'REST API for Harry Potter character data. Problem: learn server-side design hands-on. Solution: Kotlin Ktor service with clean endpoints and structured responses. Impact: foundation for mobile clients and a practical intro to API design beyond the client.',
+  },
+  'OpenWeatherMap-AndroidSDK': {
+    category: 'Open Source',
+    description:
+      'Kotlin wrapper around OpenWeatherMap APIs. Problem: existing Android integrations were dated and awkward to use. Solution: a modern, typed SDK with sensible defaults. Impact: simpler weather features in any Android app — fewer boilerplate calls, clearer error handling.',
+  },
+  'Google-Translator-Cursor-Plugin': {
+    category: 'AI',
+    description:
+      'Cursor plugin for in-editor translation. Problem: context switching breaks flow when working across languages. Solution: translate selected text inside the editor and paste results back instantly. Impact: faster multilingual development with less friction.',
+  },
+  'ArtieChatBot': {
+    category: 'AI',
+    description:
+      'Conversational Android assistant. Problem: explore how AI could feel useful inside a mobile app, not bolted on. Solution: OpenAI-backed chat with thoughtful Android integration. Impact: early experiments in AI UX patterns that informed later product thinking.',
+  },
+  'PdfBox-Android': {
+    category: 'Open Source',
+    description:
+      'Android port of Apache PdfBox. Problem: PDF manipulation on Android lacked a mature Java library. Solution: adapt PdfBox for the Android runtime. Impact: enables document processing features in mobile apps that depend on reliable PDF handling.',
+  },
+  'SIP-Investment-Calculator': {
+    category: 'Web',
+    description:
+      'Interactive SIP calculator for investment planning. Problem: most calculators hide the math or feel clunky on mobile. Solution: a responsive, no-framework web app with clear inputs and visual growth projections. Impact: helps users understand long-term savings with adjustable parameters.',
+  },
+  'dineshdev.com': {
+    category: 'Web',
+    description:
+      'This portfolio site. Problem: represent who I am as an engineer, not just a list of technologies. Solution: a lightweight, accessible static site with agent-friendly metadata. Impact: a clear home for my work, writing, and how to reach me.',
+  },
+  'HarryPotterCharacters': {
+    category: 'Mobile',
+    description:
+      'Character browser powered by a custom API. Problem: practice end-to-end mobile development with real network data. Solution: clean list UI wired to the Harry Potter REST service. Impact: solidified patterns for API consumption, loading states, and presentation on Android.',
+  },
+  'Video-Compression-Automation-Script': {
+    category: 'Experiments',
+    description:
+      'Batch video compression pipeline. Problem: large video files slow down sharing and storage. Solution: ffmpeg automation with parallel processing and quality tiers. Impact: organized output, compression reports, and a reusable script for media workflows.',
+  },
+  'AdventOfCode2024-Solutions': {
+    category: 'Experiments',
+    description:
+      'Advent of Code 2024 solutions. Problem: sharpen algorithmic thinking under time pressure. Solution: daily puzzle implementations in Python. Impact: kept problem-solving instincts sharp and explored edge cases outside day-to-day product work.',
+  },
+  'kmmsampleapp': {
+    category: 'Mobile',
+    description:
+      'Kotlin Multiplatform sample exploring shared business logic across platforms. Problem: understand KMP project structure and shared modules in practice. Solution: a minimal multi-target app with common and platform-specific layers. Impact: hands-on reference for cross-platform architecture decisions.',
+  },
+  'WeatherWise': {
+    category: 'Mobile',
+    description:
+      'Weather app experiment focused on clean data presentation. Problem: weather apps often overwhelm with data. Solution: a focused Android client with essential forecasts and readable UI. Impact: practice in API integration, state management, and user-centered information design.',
+  },
+};
 const WEBMCP_THEME_VALUES = ['light', 'dark', 'toggle'];
 
 let allProjects = [];
@@ -64,15 +133,32 @@ function initProjects() {
     });
 }
 
+function getProjectMeta(repo) {
+  const curated = PROJECT_META[repo.name];
+  if (curated) {
+    return {
+      category: curated.category,
+      description: curated.description,
+    };
+  }
+
+  return {
+    category: null,
+    description: repo.description || 'An engineering experiment — details on GitHub.',
+  };
+}
+
 function renderProjects(container, repos) {
   visibleProjects = Array.isArray(repos) ? [...repos] : [];
   container.innerHTML = repos
-    .map(
-      (r) => `
+    .map((r) => {
+      const meta = getProjectMeta(r);
+      return `
     <article class="project-card">
       <div class="project-content">
+        ${meta.category ? `<span class="project-category">${escapeHtml(meta.category)}</span>` : ''}
         <h3 class="project-title">${escapeHtml(r.name)}</h3>
-        <p class="project-desc">${escapeHtml(r.description || 'No description.')}</p>
+        <p class="project-desc">${escapeHtml(meta.description)}</p>
         <div class="project-meta">
           ${r.language ? `<span class="project-lang">${escapeHtml(r.language)}</span>` : ''}
           <span class="project-stars">★ ${r.stargazers_count}</span>
@@ -80,8 +166,8 @@ function renderProjects(container, repos) {
         <a href="${escapeHtml(r.html_url)}" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub →</a>
       </div>
     </article>
-  `
-    )
+  `;
+    })
     .join('');
 }
 
@@ -223,7 +309,7 @@ function initWebMcp() {
           section: {
             type: 'string',
             enum: SECTION_IDS,
-            description: 'Section id to scroll to (about, skills, work, experience, contact).',
+            description: 'Section id to scroll to (about, skills, work, experience, focus, learning, writing, now, contact).',
           },
           behavior: {
             type: 'string',

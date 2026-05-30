@@ -208,9 +208,19 @@ body {
 .hero-role {
   font-size: 1.2rem;
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   opacity: 0;
   animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.hero-tagline {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.22s forwards;
 }
 
 .hero-bio {
@@ -509,6 +519,46 @@ body {
 
 .project-lang {
   color: var(--accent);
+}
+
+.project-category {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.writing-grid {
+  display: grid;
+  gap: 0;
+}
+
+.writing-card {
+  cursor: default;
+}
+
+.writing-card:hover {
+  transform: translateY(-2px);
+}
+
+.writing-status {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.focus-list {
+  margin-bottom: 0;
+}
+
+.now-updated {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
 .project-stars {
