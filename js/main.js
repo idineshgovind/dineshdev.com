@@ -2,7 +2,76 @@
 
 const GITHUB_USER = 'idineshgovind';
 const REPOS_TOP = 5;
-const SECTION_IDS = ['about', 'skills', 'work', 'experience', 'contact'];
+const SECTION_IDS = ['about', 'skills', 'work', 'experience', 'focus', 'learning', 'writing', 'now', 'contact'];
+
+// Curated project copy (fallback to GitHub description)
+const PROJECT_META = {
+  'BlockDrop-TetrisGame': {
+    category: 'Mobile',
+    description:
+      'Classic Tetris for Android and iOS from one shared codebase. Built with Kotlin Multiplatform and Compose Multiplatform to see how far shared UI logic can go without feeling like a compromise on either platform.',
+  },
+  'HarryPotterAPI': {
+    category: 'Backend',
+    description:
+      'REST API for Harry Potter character data, built with Kotlin Ktor. A small backend project that helped me get comfortable with server-side design, clean endpoints, and building APIs that mobile clients can actually use.',
+  },
+  'OpenWeatherMap-AndroidSDK': {
+    category: 'Open Source',
+    description:
+      'Kotlin wrapper around OpenWeatherMap APIs. I wanted a simpler way to add weather data to Android apps without fighting outdated integrations or repeating boilerplate on every project.',
+  },
+  'Google-Translator-Cursor-Plugin': {
+    category: 'AI',
+    description:
+      'Cursor plugin that translates selected text inside the editor. Saves a lot of tab switching when working across languages during development.',
+  },
+  'ArtieChatBot': {
+    category: 'AI',
+    description:
+      'Conversational Android app backed by OpenAI. An early experiment in making AI feel like part of the app instead of an add-on.',
+  },
+  'PdfBox-Android': {
+    category: 'Open Source',
+    description:
+      'Android port of Apache PdfBox. Brings PDF manipulation to Android apps that need reliable document handling in Java.',
+  },
+  'SIP-Investment-Calculator': {
+    category: 'Web',
+    description:
+      'Simple SIP calculator for investment planning. Responsive web app with clear inputs and growth projections, built without a framework.',
+  },
+  'dineshdev.com': {
+    category: 'Web',
+    description:
+      'This site. A lightweight static portfolio for my work, writing, and contact info.',
+  },
+  'HarryPotterCharacters': {
+    category: 'Mobile',
+    description:
+      'Android app that browses Harry Potter characters from a custom REST API. Good practice for wiring up network calls, loading states, and clean list UI.',
+  },
+  'Video-Compression-Automation-Script': {
+    category: 'Experiments',
+    description:
+      'Shell script that batch-compresses videos with ffmpeg. Supports parallel runs, multiple quality tiers, and a summary report at the end.',
+  },
+  'AdventOfCode2024-Solutions': {
+    category: 'Experiments',
+    description:
+      'My solutions for Advent of Code 2024 in Python. Mostly for keeping problem-solving sharp outside regular product work.',
+  },
+  'kmmsampleapp': {
+    category: 'Mobile',
+    description:
+      'Small Kotlin Multiplatform app to understand shared modules and how to split common logic from platform-specific code.',
+  },
+  'WeatherWise': {
+    category: 'Mobile',
+    description:
+      'Weather app experiment with a simple, readable UI. Focused on showing the essentials instead of throwing every data point at the user.',
+  },
+};
 const WEBMCP_THEME_VALUES = ['light', 'dark', 'toggle'];
 
 let allProjects = [];
@@ -64,15 +133,32 @@ function initProjects() {
     });
 }
 
+function getProjectMeta(repo) {
+  const curated = PROJECT_META[repo.name];
+  if (curated) {
+    return {
+      category: curated.category,
+      description: curated.description,
+    };
+  }
+
+  return {
+    category: null,
+    description: repo.description || 'Side project. More details on GitHub.',
+  };
+}
+
 function renderProjects(container, repos) {
   visibleProjects = Array.isArray(repos) ? [...repos] : [];
   container.innerHTML = repos
-    .map(
-      (r) => `
+    .map((r) => {
+      const meta = getProjectMeta(r);
+      return `
     <article class="project-card">
       <div class="project-content">
+        ${meta.category ? `<span class="project-category">${escapeHtml(meta.category)}</span>` : ''}
         <h3 class="project-title">${escapeHtml(r.name)}</h3>
-        <p class="project-desc">${escapeHtml(r.description || 'No description.')}</p>
+        <p class="project-desc">${escapeHtml(meta.description)}</p>
         <div class="project-meta">
           ${r.language ? `<span class="project-lang">${escapeHtml(r.language)}</span>` : ''}
           <span class="project-stars">★ ${r.stargazers_count}</span>
@@ -80,8 +166,8 @@ function renderProjects(container, repos) {
         <a href="${escapeHtml(r.html_url)}" target="_blank" rel="noopener noreferrer" class="project-link">View on GitHub →</a>
       </div>
     </article>
-  `
-    )
+  `;
+    })
     .join('');
 }
 
@@ -223,7 +309,7 @@ function initWebMcp() {
           section: {
             type: 'string',
             enum: SECTION_IDS,
-            description: 'Section id to scroll to (about, skills, work, experience, contact).',
+            description: 'Section id to scroll to (about, skills, work, experience, focus, learning, writing, now, contact).',
           },
           behavior: {
             type: 'string',
